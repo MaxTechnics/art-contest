@@ -4,7 +4,7 @@
             <tr>
                 <td id="logo">r/JaidenAnimations Art Contest Submissions</td>
                 <td id="navigation">
-                    <img class="thign" :src="`https://cdn.discordapp.com/avatars/${$store.state.user_info?.id}/${$store.state.user_info?.avatar}.png`">
+                    <img v-if="$store.state.user_info.avatar" class="thign" :src="`https://cdn.discordapp.com/avatars/${$store.state.user_info?.id}/${$store.state.user_info?.avatar}.png`">
                     <a class="no-effect">
                         {{ $store.state.user_info?.username}}
                         </a>
@@ -64,12 +64,12 @@ header {
 	box-shadow: none;
 	transition: 0.4s ease-in-out;
 	z-index: 2;
+	backdrop-filter: blur(8px);
 }
 header.isScrolled {
 	background-color: rgba(#182538, 0.5);
 	// color: #000000;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.09);
-	backdrop-filter: blur(8px);
 }
 header table {
 	width: 100%;
