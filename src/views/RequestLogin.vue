@@ -22,7 +22,8 @@ export default {
 	},
 	methods: {
 		logIn() {
-			window.location = 'https://discord.com/api/oauth2/authorize?client_id=778997567554977842&redirect_uri=http%3A%2F%2Flocalhost%3A1000%2Fsubmissions&response_type=code&scope=identify%20guilds%20guilds.members.read';
+			const redirect = import.meta.env.PROD ? 'https://discord.com/api/oauth2/authorize?client_id=778997567554977842&redirect_uri=http%3A%2F%2Fart-contest.herokuapp.com%2Fsubmissions&response_type=code&scope=identify%20guilds.members.read%20guilds' : 'https://discord.com/api/oauth2/authorize?client_id=778997567554977842&redirect_uri=http%3A%2F%2Flocalhost%3A1000%2Fsubmissions&response_type=code&scope=identify%20guilds%20guilds.members.read';
+			window.location = redirect;
 		}
 	}
 };
