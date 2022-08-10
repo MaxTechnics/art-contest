@@ -1,0 +1,30 @@
+
+@font-face {
+	font-family: 'camera-icons';
+	src: url("@/assets/fonts/camera-icons/camera-icons.eot?7h6q4p");
+	src: url("@/assets/fonts/camera-icons/camera-icons.eot?#iefix7h6q4p") format("embedded-opentype"), url("@/assets/fonts/camera-icons/camera-icons.woff?7h6q4p") format("woff"), url("@/assets/fonts/camera-icons/camera-icons.ttf?7h6q4p") format("truetype"), url("@/assets/fonts/camera-icons/camera-icons.svg?7h6q4p#camera-icons") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	font-family: "Avenir Next", Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+	color: #fff;
+	/* background: #252323; */
+	background-color: #182538;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100vw;
+}
+
+/* Content */
+
+.content {
+	padding: 1em 0 3em;
+	/* max-width: 1080px; */
+	/* max-width: 80vw; */
+	margin: 0 auto;
+}
+
