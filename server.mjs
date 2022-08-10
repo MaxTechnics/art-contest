@@ -3,8 +3,19 @@ import fetch from 'node-fetch';
 import fs from 'fs-extra';
 
 import proxy from 'express-http-proxy';
-const { serverPort, sessionServerToken, useProxy, proxyURL, client_id, client_secret, guild_id, voted_role_id, required_role, new_account_limit_timestamp } = fs.readJsonSync('./config.json');
 import session from 'express-session';
+
+// Config jaj
+const serverPort = process.env.PORT || fs.readJsonSync('./config.json').serverPort;
+const sessionServerToken = process.env.SESSION_SERVER_TOKEN || config.fs.readJsonSync('./config.json').sessionServerToken;
+const useProxy = process.env.USE_PROXY || fs.readJsonSync('./config.json').useProxy;
+const proxyURL = process.env.PROXY_URL || fs.readJsonSync('./config.json').proxyURL;
+const client_id = process.env.CLIENT_ID || fs.readJsonSync('./config.json').client_id;
+const client_secret = process.env.CLIENT_SECRET || fs.readJsonSync('./config.json').client_secret;
+const guild_id = process.env.GUILD_ID || fs.readJsonSync('./config.json').guild_id;
+const voted_role_id = process.env.VOTED_ROLE_ID || fs.readJsonSync('./config.json').voted_role_id;
+const required_role = process.env.REQUIRED_ROLE || fs.readJsonSync('./config.json').required_role;
+const new_account_limit_timestamp = process.env.NEW_ACCOUNT_LIMIT_TIMESTAMP || fs.readJsonSync('./config.json').new_account_limit_timestamp;
 
 const handleOauthCall = async (oauthcode) => {
 	return new Promise(async (res, rej) => {
@@ -62,7 +73,7 @@ const handleUserInfo = (tokens) => {
 		const voting_open = true;
 		if (!voting_open) return res({ can_vote: false, message: 'Voting has closed, thank you for your participation!', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (oauthUserInGuild.code) return res({ can_vote: false, message: oauthUserInGuild.message, user_data: { member: oauthUser, guild: oauthUserInGuild } });
-		if (new Date(new_account_limit_timestamp) <= new Date(oauthUserInGuild.joined_at)) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulateion', user_data: { member: oauthUser, guild: oauthUserInGuild } });
+		if (new_account_limit_timestamp && (new Date(new_account_limit_timestamp) <= new Date(oauthUserInGuild.joined_at))) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulateion', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (oauthUserInGuild?.roles?.includes(voted_role_id)) return res({ can_vote: false, message: 'You already voted, if you really need to change your vote, contact Grady\'s Physics Homework (aka MaxTechnics)', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (!oauthUserInGuild?.roles?.includes(required_role)) return res({ can_vote: false, message: 'You need the Crayola role, it unlocks at level 5, go talk in the server a bit and come back later', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 
