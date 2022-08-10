@@ -88,6 +88,14 @@ header table {
 	font-size: 24px;
 	// color: rgb(255, 44, 90);
 }
+
+// hide logo when width smaller than 150 pixel
+@media (max-width: 480px) {
+	#logo {
+		display: none;
+	}
+}
+
 #navigation {
 	text-align: right;
 }
