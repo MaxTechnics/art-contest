@@ -18,6 +18,7 @@ const guild_id = process.env.GUILD_ID || config_file?.guild_id;
 const voted_role_id = process.env.VOTED_ROLE_ID || config_file?.voted_role_id;
 const required_role = process.env.REQUIRED_ROLE || config_file?.required_role;
 const new_account_limit_timestamp = process.env.NEW_ACCOUNT_LIMIT_TIMESTAMP || config_file?.new_account_limit_timestamp;
+const redirect_uri = process.env.REDIRECT_URI || config_file?.redirect_uri
 
 const handleOauthCall = async (oauthcode) => {
 	return new Promise(async (res, rej) => {
