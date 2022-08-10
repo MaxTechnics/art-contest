@@ -30,7 +30,7 @@ const handleOauthCall = async (oauthcode) => {
 					client_secret: client_secret,
 					code: oauthcode,
 					grant_type: 'authorization_code',
-					redirect_uri: `http://localhost:${serverPort}/submissions`,
+					redirect_uri: redirect_uri,
 					scope: 'identify',
 				}),
 				headers: {
