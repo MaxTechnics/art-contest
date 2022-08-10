@@ -8,16 +8,16 @@ import session from 'express-session';
 const config_file = fs.existsSync('./config.json') ? fs.readJsonSync('./config.json') : null;
 
 // Config jaj
-const serverPort = process.env.PORT || config_file.serverPort;
-const sessionServerToken = process.env.SESSION_SERVER_TOKEN || config_file.sessionServerToken;
-const useProxy = process.env.USE_PROXY || config_file.useProxy;
-const proxyURL = process.env.PROXY_URL || config_file.proxyURL;
-const client_id = process.env.CLIENT_ID || config_file.client_id;
-const client_secret = process.env.CLIENT_SECRET || config_file.client_secret;
-const guild_id = process.env.GUILD_ID || config_file.guild_id;
-const voted_role_id = process.env.VOTED_ROLE_ID || config_file.voted_role_id;
-const required_role = process.env.REQUIRED_ROLE || config_file.required_role;
-const new_account_limit_timestamp = process.env.NEW_ACCOUNT_LIMIT_TIMESTAMP || config_file.new_account_limit_timestamp;
+const serverPort = process.env.PORT || config_file?.serverPort;
+const sessionServerToken = process.env.SESSION_SERVER_TOKEN || config_file?.sessionServerToken;
+const useProxy = process.env.USE_PROXY || config_file?.useProxy;
+const proxyURL = process.env.PROXY_URL || config_file?.proxyURL;
+const client_id = process.env.CLIENT_ID || config_file?.client_id;
+const client_secret = process.env.CLIENT_SECRET || config_file?.client_secret;
+const guild_id = process.env.GUILD_ID || config_file?.guild_id;
+const voted_role_id = process.env.VOTED_ROLE_ID || config_file?.voted_role_id;
+const required_role = process.env.REQUIRED_ROLE || config_file?.required_role;
+const new_account_limit_timestamp = process.env.NEW_ACCOUNT_LIMIT_TIMESTAMP || config_file?.new_account_limit_timestamp;
 
 const handleOauthCall = async (oauthcode) => {
 	return new Promise(async (res, rej) => {
