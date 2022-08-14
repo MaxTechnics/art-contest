@@ -1,5 +1,5 @@
 <template>
-	<button class="funkyButton" :disabled="isDisabled">
+	<button class="funkyButton" :class="{ 'right-margin' : rightMargin }" :disabled="isDisabled">
 		<slot></slot>
 		<Shine v-if="hasShine && !isDisabled" />
 	</button>
@@ -12,7 +12,8 @@ export default {
 	name: 'Button',
 	props: {
 		hasShine: Boolean,
-		isDisabled: Boolean
+		isDisabled: Boolean,
+		rightMargin: Boolean
 	},
 	components: {
 		Shine
@@ -94,5 +95,9 @@ button:not(:disabled) {
 button:disabled {
 	background-color: $grey !important;
 	cursor: not-allowed;
+}
+
+.right-margin {
+	margin-right: 0.625em;
 }
 </style>
