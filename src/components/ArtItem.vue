@@ -2,6 +2,7 @@
 	<div class="grid__item" data-size="1280x961">
 		<a :href="imageURL" class="img-wrap"><img :src="imageURL" alt="img" />
 			<div class="description description--grid">
+				<div style="display: none" class="non-confusing-name" :data-author="author" :data-authorid="author_id" :data-image="imageURL"></div>
 				<h3>{{ title }}</h3>
 				<p>{{ description }}<em>&mdash; {{ author }}</em></p>
 				<!-- <div class="details"> -->
@@ -25,7 +26,8 @@ export default {
 		title: String,
 		description: String,
 		author: String,
-		imageURL: String
+		imageURL: String,
+		author_id: String
 	}
 }
 </script>
