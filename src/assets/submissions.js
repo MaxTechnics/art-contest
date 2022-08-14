@@ -1,6 +1,7 @@
 import bloop from '@/assets/arts/bloop.jpeg'
 import targetstrike from '@/assets/arts/targetstrike.png'
 import harly from '@/assets/arts/harky.png'
+import ralphanimates from '@/assets/arts/ralphanimates.png';
 import image1 from '@/assets/arts/1.jpg';
 import image2 from '@/assets/arts/2.jpg';
 import image3 from '@/assets/arts/3.jpg';
@@ -36,6 +37,13 @@ export default [
     //     author: 'harky? 🐀',
     //     author_id: '640369291220353053',
     //     asset: harly
+    // },
+    // {
+    //     title: 'Generations United',
+    //     description: '',
+    //     author: 'NotiRaphAnimates',
+    //     author_id: '683450857978593339',
+    //     asset: ralphanimates
     // },
     {
         title: 'Mother\'s Love',
