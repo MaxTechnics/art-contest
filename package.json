@@ -9,6 +9,7 @@
     "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.35.6",
     "express": "^4.18.1",
     "express-http-proxy": "^1.6.3",
     "express-session": "^1.17.3",
