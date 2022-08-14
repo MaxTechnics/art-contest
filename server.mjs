@@ -1,3 +1,4 @@
+import { createClient } from '@supabase/supabase-js';
 import express from 'express';
 import fetch from 'node-fetch';
 import fs from 'fs-extra';
@@ -18,7 +19,14 @@ const guild_id = process.env.GUILD_ID || config_file?.guild_id;
 const voted_role_id = process.env.VOTED_ROLE_ID || config_file?.voted_role_id;
 const required_role = process.env.REQUIRED_ROLE || config_file?.required_role;
 const new_account_limit_timestamp = process.env.NEW_ACCOUNT_LIMIT_TIMESTAMP || config_file?.new_account_limit_timestamp;
-const redirect_uri = process.env.REDIRECT_URI || config_file?.redirect_uri
+const redirect_uri = process.env.REDIRECT_URI || config_file?.redirect_uri;
+const voting_open = process.env.VOTING_OPEN || config_file?.redirect_uri;
+const supabase_url = process.env.SUPABASE_URL || config_file?.supabase_url;
+const supabase_key = process.env.SUPABASE_KEY || config_file?.supabase_key;
+const supabase_table = process.env.SUPABASE_TABLE || config_file?.supabase_table;
+const supabase_analytics_table = process.env.SUPABASE_ANALYTICS_TABLE || config_file?.supabase_analytics_table;
+
+const supabase = createClient(supabase_url, supabase_key);
 
 const handleOauthCall = async (oauthcode) => {
 	return new Promise(async (res, rej) => {
@@ -49,7 +57,7 @@ const handleOauthCall = async (oauthcode) => {
 			rej({ loginSuccess: false, message: 'Something went wrong server side' })
 		}
 	});
-}
+};
 
 const handleUserInfo = (tokens) => {
 	return new Promise(async (res, rej) => {
@@ -64,7 +72,7 @@ const handleUserInfo = (tokens) => {
 			headers: {
 				authorization: `${tokens.token_type} ${tokens.access_token}`,
 			}
-		})
+		});
 
 		const oauthUser = await userResult.json();
 		const oauthUserInGuild = await guildResult.json();
@@ -73,18 +81,22 @@ const handleUserInfo = (tokens) => {
 		if (oauthUser.code === 0 || oauthUserInGuild.code === 0) return rej({ message: 'Authenticaton failed, reload to start a new session.' });
 		if (oauthUser.retry_after || oauthUserInGuild.retry_after) return rej({ message: `Discord is rateliming us, please try again later, about ${Math.ceil(oauthUser.retry_after / 1000 / 60) || Math.ceil(oauthUserInGuild.retry_after / 1000 / 60)} min(s)` });
 		if (oauthUserInGuild.code === 10004) return res({ can_vote: false, message: 'You are not in the r/JaidenAnimations server, sorry.', user_data: { member: oauthUser, guild: oauthUserInGuild } });
-		const voting_open = true;
 		if (!voting_open) return res({ can_vote: false, message: 'Voting has closed, thank you for your participation!', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (oauthUserInGuild.code) return res({ can_vote: false, message: oauthUserInGuild.message, user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (new_account_limit_timestamp && (new Date(new_account_limit_timestamp) <= new Date(oauthUserInGuild.joined_at))) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulateion', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (oauthUserInGuild?.roles?.includes(voted_role_id)) return res({ can_vote: false, message: 'You already voted, if you really need to change your vote, contact Grady\'s Physics Homework (aka MaxTechnics)', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 		if (!oauthUserInGuild?.roles?.includes(required_role)) return res({ can_vote: false, message: 'You need the Crayola role, it unlocks at level 5, go talk in the server a bit and come back later', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 
+
 		res({ can_vote: true, message: 'Welcome', user_data: { member: oauthUser, guild: oauthUserInGuild } })
 	})
-}
+};
 
-console.log('Starting...')
+const handleVote = (userInfo, vote_choice) => {
+
+};
+
+console.log('Starting...');
 
 const app = express();
 
@@ -105,7 +117,11 @@ app.get('/session', async (req, res) => {
 	if (!req.session.tokens) {
 		return res.status(418).send({ loggedIn: false, message: 'No session active' });
 	}
-	handleUserInfo(req.session.tokens).then(result => {
+	handleUserInfo(req.session.tokens).then(async result => {
+		const { data, error } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'user_pull_session', info: result }]);
+		if (error) console.error(error);
+		console.log('Analytics session data:', data);
+
 		res.send(result);
 	}).catch(e => {
 		req.session.destroy();
@@ -121,9 +137,14 @@ app.delete('/session', (req, res) => {
 app.post('/oauth', async (req, res) => {
 	console.log(req.body.oauthcode);
 	handleOauthCall(req.body.oauthcode).then(oauth => {
-		handleUserInfo(oauth.oauthData).then(result => {
+		handleUserInfo(oauth.oauthData).then(async result => {
 			req.session.tokens = oauth.oauthData;
 			res.send(result);
+
+			const { data, error } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'user_log_in', info: result }]);
+			if (error) console.error(error);
+			console.log('Analytics logging in data:', data);
+
 		}).catch(e => {
 			req.session.destroy();
 			res.status(403).send(e);
@@ -131,6 +152,11 @@ app.post('/oauth', async (req, res) => {
 	}).catch(e => {
 		res.status(418).send(e);
 	});
+});
+
+
+app.post('/vote', async (req, res) => {
+
 });
 
 if (useProxy) {
