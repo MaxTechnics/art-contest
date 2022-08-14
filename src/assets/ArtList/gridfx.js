@@ -66,7 +66,8 @@ class GridFx {
         this.isExpanded = false;
         this.isAnimating = false;
         this.closeCtrl = this.previewEl.querySelector('button.action--close');
-        this.previewDescriptionEl = this.previewEl.querySelector('.description--preview');
+        // this.previewDescriptionEl = this.previewEl.querySelector('.description--preview');
+        this.previewDescriptionEl = this.previewEl.querySelector('.preview-container');
 
         this._init();
     }

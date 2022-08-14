@@ -15,7 +15,10 @@
     					</i>
     					<span class="text-hidden">Close</span>
     				</button>
-    				<div class="description description--preview"></div>
+    				<div class="description description--preview">
+						<div class="preview-container" ref="preview_container"></div>
+						<Button v-if="$store.state.user_status?.can_vote" @click="open_modal" >I CHOOSE YOU!!!!</Button>
+					</div>
     			</div>
     			<!-- /preview -->
     		</div>
