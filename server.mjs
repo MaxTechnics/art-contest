@@ -104,12 +104,7 @@ app.use(express.json()); // Parses JSON bodies to JS objects
 app.use(session({
 	secret: sessionServerToken,
 	resave: true,
-	saveUninitialized: true,
-	cookie: {
-		// Session expires after 1 hour of inactivity.
-		expires: 60 * 1000 * 60,
-		secure: false
-	}
+	saveUninitialized: true
 })); // Auth sessions
 app.use(express.urlencoded({ extended: true })); // Needed for auth thing body parsing
 
