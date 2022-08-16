@@ -34,7 +34,7 @@ export default {
 	height: 100vh;
 	width: 100%;
 	margin: 0;
-	background-image: url("@/assets/WavePage/wave.svg");
+	// background-image: url("@/assets/WavePage/wave.svg");
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
