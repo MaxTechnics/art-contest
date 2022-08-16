@@ -70,8 +70,8 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(2px);
+	background-color: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(4px);
 }
 
 .modal-container {
@@ -98,8 +98,8 @@ export default {
 
 @supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
 	.modal-container {
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
 	}
 }
 
