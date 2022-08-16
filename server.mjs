@@ -15,6 +15,7 @@ const useProxy = process.env.USE_PROXY || config_file?.useProxy;
 const proxyURL = process.env.PROXY_URL || config_file?.proxyURL;
 const client_id = process.env.CLIENT_ID || config_file?.client_id;
 const client_secret = process.env.CLIENT_SECRET || config_file?.client_secret;
+const bot_token = process.env.BOT_TOKEN || config_file?.bot_token;
 const guild_id = process.env.GUILD_ID || config_file?.guild_id;
 const voted_role_id = process.env.VOTED_ROLE_ID || config_file?.voted_role_id;
 const required_role = process.env.REQUIRED_ROLE || config_file?.required_role;
@@ -93,7 +94,47 @@ const handleUserInfo = (tokens) => {
 };
 
 const handleVote = (userInfo, vote_choice) => {
+	return new Promise(async (res, rej) => {
+		const { data: user_already_in_db_data, error: user_already_in_db_error } = await supabase.from(supabase_table).select('voter_user_id').eq('voter_user_id', userInfo.user_data.member.id);
+		console.log('Userdata already in db', user_already_in_db_data, user_already_in_db_error);
 
+		if (!userInfo.can_vote) return rej({ message: 'You already have the voted role, you can\'t vote', maybe_wrong: true });
+		if (user_already_in_db_error) return rej({ message: 'Failed to check if you are already in the database', maybe_wrong: false });
+		if (user_already_in_db_data.length !== 0) return rej({ message: 'You are already in the database, you can\'t vote.', maybe_wrong: true });
+
+		const { data, error } = await supabase.from(supabase_table).insert([
+			{
+				voter_user_id: userInfo.user_data.member.id,
+				vote_choice_id: vote_choice,
+				user_info_object: userInfo
+			}
+		]); // add our vote
+
+		console.error(error);
+		if (error) {
+			const { data: failed_data, error: failed_error } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'vote_save_failed', info: { supabase_error: error } }]);
+			return rej({ message: 'Failed to write to database', maybe_wrong: false });
+		}
+
+		console.log(guild_id, userInfo.user_data.member.id, voted_role_id);
+		await fetch(`https://discord.com/api/guilds/${guild_id}/members/${userInfo.user_data.member.id}/roles/${voted_role_id}`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bot ${bot_token}`,
+				'X-Audit-Log-Reason': 'Member voted during the first r/jdn art contest'
+			}
+		}).then(async response => {
+			if (response.status !== 204) {
+				const { data: thign, error: that } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'vote_role_add_failed', info: { response: await response.json(), user_info: userInfo } }]);
+				console.log(thign, that);
+				return rej({ message: 'Your vote was saved, however your role was not added. Please contact Grady\'s Physics Homework (MaxTechnics)', maybe_wrong: false });
+			}
+
+			const { data: yes, error: no } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'vote_role_add_success', info: { user_info: userInfo } }]);
+			console.log(yes, no);
+			res({ message: 'Your vote has been saved, thank you!' });
+		});
+	});
 };
 
 console.log('Starting...');
@@ -151,7 +192,19 @@ app.post('/oauth', async (req, res) => {
 
 
 app.post('/vote', async (req, res) => {
+	handleUserInfo(req.session.tokens).then(async result => {
+		const { data, error } = await supabase.from(supabase_analytics_table).insert([{ event_name: 'pre_vote_data_pull', info: result }]);
+		if (error) console.error(error);
 
+		handleVote(result, req.body.choice).then(response => {
+			res.send(response);
+		}).catch(response => {
+			res.status(418).send(response);
+		});
+	}).catch(e => {
+		req.session.destroy();
+		res.status(403).send({ message: e });
+	});
 });
 
 if (useProxy) {
