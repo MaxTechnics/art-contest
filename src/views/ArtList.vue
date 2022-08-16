@@ -1,15 +1,12 @@
 <template>
     <div> 
-		<!-- <Confetti /> -->
         <FunkyHeader style="margin-top: -5vh" />
     	<div class="container space">
     		<div class="content">
     			<div class="grid" ref="grid">
                     <ArtItem v-for="item in submissions" :key="item" :title="item.title" :description="item.description" :author="item.author" :imageURL="item.asset" :author_id="item.author_id" />
     			</div>
-    			<!-- /grid -->
     			<div class="preview">
-    				<!-- <button class="action action--close"><i class="fa fa-times"></i><span class="text-hidden">Close</span></button> -->
     				<button class="action action--close">
     					<i>
     						<svg class="action-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
@@ -21,7 +18,6 @@
 						<Button v-if="$store.state.user_status?.can_vote" @click="open_modal" >I CHOOSE YOU!!!!</Button>
 					</div>
     			</div>
-    			<!-- /preview -->
     		</div>
     	</div>
 
@@ -37,18 +33,28 @@
 
             <template #buttons>
 				<Button v-if="!is_voting" @click="close_modal" class="cancel-btn" :rightMargin="true">Cancel</Button>
-				<Button @click="post_vote" :isDisabled="!is_confirmed" class="confirm-btn">
+				<Button @click.once="post_vote" :isDisabled="!is_confirmed" class="confirm-btn">
                     <span :class="{ 'hide': is_voting }">Vote</span>
                     <Spinner v-if="is_voting" />
                 </Button>
             </template>
         </Modal>
+
+		<Modal @closeModal="vote_close_modal" :modalTitle="vote_finished_title" :show="voting_finished">
+			<template #modal-subtitle>
+				<span>{{ vote_done_msg }}</span>
+				<span v-if="maybe_wrong"><br>If you believe this is incorrect, or you want to change your vote, contact Grady's Physics Homework (MaxTechnics)</span>
+			</template>
+
+			<template #modal-body>
+				<Button @click="vote_close_modal">Alright</Button>
+			</template>
+		</Modal>
     </div>
 </template>
 
 <script>
 import ArtItem from '../components/ArtItem.vue';
-// import Confetti from '../components/Confetti.vue';
 import FunkyHeader from '../components/FunkyHeader.vue';
 import Modal from '../components/Modal/Modal.vue';
 import ModalCheckbox from '../components/Modal/ModalCheckbox.vue';
@@ -78,7 +84,11 @@ export default {
 		is_confirmed: false,
 		preview_author: null,
 		preview_img: null,
-		preview_id: null
+		preview_id: null,
+		voting_finished: false,
+		vote_done_msg: '',
+		vote_finished_title: '',
+		maybe_wrong: false
 	}),
 	methods: {
 		shuffle(array) {
@@ -112,10 +122,41 @@ export default {
 			this.preview_id = null;
 			this.is_voting = false;
 			this.is_confirmed = false;
-
+		},
+		vote_close_modal() {
+			this.voting_finished = false;
+			this.vote_done_msg = '';
+			this.vote_finished_title = '';
+			this.maybe_wrong = false;
 		},
 		post_vote() {
 			this.is_voting = true;
+			fetch('/vote', {
+				method: 'POST',
+				body: JSON.stringify({ choice: this.preview_id }),
+				headers: { 'Content-type': 'application/json; charset=UTF-8' }
+			}).then(async response => {
+				const data = await response.json();
+
+				this.close_modal();
+				if (response.status !== 200) {
+					this.vote_finished_title = 'Your vote was not saved';
+					this.vote_done_msg = data.message;
+					this.maybe_wrong = data.maybe_wrong;
+				} else {
+					this.vote_finished_title = 'Vote saved!!';
+					this.vote_done_msg = data.message;
+					window.initBurst();
+				}
+
+				this.$store.commit('setUserStatus', false);
+				this.voting_finished = true;
+			}).catch(e => {
+				this.close_modal();
+				this.vote_finished_title = 'Your vote was not saved';
+				this.vote_done_msg = `The server didn't really do anything about the request, please contact Grady's Physics Homework (MaxTechnics) about it. (error: ${e})`;
+				this.voting_finished = true;
+			});
 		}
 	},
 	mounted() {
