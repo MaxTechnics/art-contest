@@ -2,6 +2,7 @@ import bloop from '@/assets/arts/bloop.jpeg'
 import targetstrike from '@/assets/arts/targetstrike.png'
 import harly from '@/assets/arts/harky.png'
 import ralphanimates from '@/assets/arts/ralphanimates.png';
+import moon from '@/assets/arts/moon.jpg';
 import image1 from '@/assets/arts/1.jpg';
 import image2 from '@/assets/arts/2.jpg';
 import image3 from '@/assets/arts/3.jpg';
@@ -44,6 +45,13 @@ export default [
     //     author: 'NotiRaphAnimates',
     //     author_id: '683450857978593339',
     //     asset: ralphanimates
+    // },
+    // {
+    //     title: 'Ari',
+    //     description: 'Ari is fierce',
+    //     author: 'Møøn',
+    //     author_id: '992384389839331329',
+    //     asset: moon
     // },
     {
         title: 'Mother\'s Love',
