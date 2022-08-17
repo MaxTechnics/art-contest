@@ -2,9 +2,10 @@
     <div class="container">
         <div class="loading-shadow active">
             <div class="loading-box">
-                <div class="loading-items">
-                    <div class="loading-item" v-for="i in 10" :key="i"></div>
-                </div>
+                <!-- <div class="loading-items"> -->
+                    <!-- <div class="loading-item" v-for="i in 10" :key="i"></div> -->
+                <!-- </div> -->
+				<NewSpinner />
                 <label><span v-if="$store.state.user_info?.username">Hihi {{ $store.state.user_info.username }}!<br></span>{{ message }}</label>
             </div>
         </div>
@@ -12,7 +13,12 @@
 </template>
 
 <script>
+import NewSpinner from '../components/NewSpinner.vue';
+
 export default {
+	components: {
+		NewSpinner
+	},
 	name: 'Loading',
 	props: {
 		message: String
