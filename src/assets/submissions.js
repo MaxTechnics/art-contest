@@ -3,6 +3,7 @@ import targetstrike from '@/assets/arts/targetstrike.png'
 import harly from '@/assets/arts/harky.png'
 import ralphanimates from '@/assets/arts/ralphanimates.png';
 import moon from '@/assets/arts/moon.jpg';
+import abdullah from '@/assets/arts/abdullah.png';
 import image1 from '@/assets/arts/1.jpg';
 import image2 from '@/assets/arts/2.jpg';
 import image3 from '@/assets/arts/3.jpg';
@@ -52,6 +53,13 @@ export default [
     //     author: 'Møøn',
     //     author_id: '992384389839331329',
     //     asset: moon
+    // },
+    // {
+    //     title: 'Jaidic',
+    //     description: '',
+    //     author: 'Al-Nokhezha Abdullah',
+    //     author_id: '513004975870312467',
+    //     asset: abdullah
     // },
     {
         title: 'Mother\'s Love',
