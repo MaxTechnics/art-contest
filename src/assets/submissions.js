@@ -4,6 +4,7 @@ import harly from '@/assets/arts/harky.png'
 import ralphanimates from '@/assets/arts/ralphanimates.png';
 import moon from '@/assets/arts/moon.jpg';
 import abdullah from '@/assets/arts/abdullah.png';
+import macch from '@/assets/arts/Animus_Concept.jpg';
 import image1 from '@/assets/arts/1.jpg';
 import image2 from '@/assets/arts/2.jpg';
 import image3 from '@/assets/arts/3.jpg';
@@ -60,6 +61,13 @@ export default [
     //     author: 'Al-Nokhezha Abdullah',
     //     author_id: '513004975870312467',
     //     asset: abdullah
+    // },
+    // {
+    //     title: 'Animus Concept',
+    //     description: '',
+    //     author: 'Macch_0',
+    //     author_id: '1010149617071030332',
+    //     asset: macch
     // },
     {
         title: 'Mother\'s Love',
