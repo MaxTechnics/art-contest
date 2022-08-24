@@ -5,6 +5,7 @@ import ralphanimates from '@/assets/arts/ralphanimates.png';
 import moon from '@/assets/arts/moon.jpg';
 import abdullah from '@/assets/arts/abdullah.png';
 import macch from '@/assets/arts/Animus_Concept.jpg';
+import lazyjackie from '@/assets/arts/lazyjackie.png';
 import image1 from '@/assets/arts/1.jpg';
 import image2 from '@/assets/arts/2.jpg';
 import image3 from '@/assets/arts/3.jpg';
@@ -69,6 +70,15 @@ export default [
     //     author_id: '1010149617071030332',
     //     asset: macch
     // },
+    // {
+    //     title: 'Jaiden, the Nuzlocke Destroyer',
+    //     description: '',
+    //     author: 'LazyJackie',
+    //     author_id: '804754691732275230',
+    //     asset: lazyjackie
+    // },
+
+    //// If no other submission, yeet yourself to add here!!!!
     {
         title: 'Mother\'s Love',
         description: 'Every time you drink a glass of milk or eat a piece of cheese, you harm a mother. Please go vegan.',
