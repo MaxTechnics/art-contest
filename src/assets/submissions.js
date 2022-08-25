@@ -24,76 +24,76 @@ import turboaiger from '@/assets/arts/turboaiger.png';
 
 
 export default [
-    // {
-    // title: 'Gardevoir',
-    // description: '',
-    //     author: 'Bloop',
-    //     author_id: '915647175130759230',
-    //     asset: bloop
-    // },
-    // {
-    //     title: 'Lego Dialga',
-    //     description: '',
-    //     author: 'Targetstrike',
-    //     author_id: '594370880956530699',
-    //     asset: targetstrike
-    // },
-    // {
-    //     title: 'i was tired boom bam beep bop blam',
-    //     description: '',
-    //     author: 'harky? 🐀',
-    //     author_id: '640369291220353053',
-    //     asset: harly
-    // },
-    // {
-    //     title: 'Generations United',
-    //     description: '',
-    //     author: 'NotiRaphAnimates',
-    //     author_id: '683450857978593339',
-    //     asset: ralphanimates
-    // },
-    // {
-    //     title: 'Ari',
-    //     description: 'Ari is fierce',
-    //     author: 'Møøn',
-    //     author_id: '992384389839331329',
-    //     asset: moon
-    // },
-    // {
-    //     title: 'Jaidic',
-    //     description: '',
-    //     author: 'Al-Nokhezha Abdullah',
-    //     author_id: '513004975870312467',
-    //     asset: abdullah
-    // },
-    // {
-    //     title: 'Animus Concept',
-    //     description: '',
-    //     author: 'Macch_0',
-    //     author_id: '1010149617071030332',
-    //     asset: macch
-    // },
-    // {
-    //     title: 'Jaiden, the Nuzlocke Destroyer',
-    //     description: '',
-    //     author: 'LazyJackie',
-    //     author_id: '804754691732275230',
-    //     asset: lazyjackie
-    // },
-    // {
-    //     title: 'Jaiden and Jacob after the Elite Four',
-    //     description: '',
-    //     author: 'yeet yourself',
-    //     author_id: '769253933167673344',
-    //     asset: yeet_yourself
-    // },
-    // {
-    //     title: 'Torchic watches sunset',
-    //     description: '',
-    //     author: 'TurboAiger 👑🎗',
-    //     author_id: '892636003892871200',
-    //     asset: turboaiger
-    // },
+    {
+        title: 'Gardevoir',
+        description: '',
+        author: 'Bloop',
+        author_id: '915647175130759230',
+        asset: bloop
+    },
+    {
+        title: 'Lego Dialga',
+        description: '',
+        author: 'Targetstrike',
+        author_id: '594370880956530699',
+        asset: targetstrike
+    },
+    {
+        title: 'i was tired boom bam beep bop blam',
+        description: '',
+        author: 'harky? 🐀',
+        author_id: '640369291220353053',
+        asset: harly
+    },
+    {
+        title: 'Generations United',
+        description: '',
+        author: 'NotiRaphAnimates',
+        author_id: '683450857978593339',
+        asset: ralphanimates
+    },
+    {
+        title: 'Ari',
+        description: 'Ari is fierce',
+        author: 'Møøn',
+        author_id: '992384389839331329',
+        asset: moon
+    },
+    {
+        title: 'Jaidic',
+        description: '',
+        author: 'Al-Nokhezha Abdullah',
+        author_id: '513004975870312467',
+        asset: abdullah
+    },
+    {
+        title: 'Animus Concept',
+        description: '',
+        author: 'Macch_0',
+        author_id: '1010149617071030332',
+        asset: macch
+    },
+    {
+        title: 'Jaiden, the Nuzlocke Destroyer',
+        description: '',
+        author: 'LazyJackie',
+        author_id: '804754691732275230',
+        asset: lazyjackie
+    },
+    {
+        title: 'Jaiden and Jacob after the Elite Four',
+        description: '',
+        author: 'yeet yourself',
+        author_id: '769253933167673344',
+        asset: yeet_yourself
+    },
+    {
+        title: 'Torchic watches sunset',
+        description: '',
+        author: 'TurboAiger 👑🎗',
+        author_id: '892636003892871200',
+        asset: turboaiger
+    },
 
 
     // {
