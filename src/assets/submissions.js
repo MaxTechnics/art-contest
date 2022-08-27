@@ -1,13 +1,13 @@
-import bloop from '@/assets/arts/bloop.jpeg'
-import targetstrike from '@/assets/arts/targetstrike.png'
-import harly from '@/assets/arts/harky.png'
-import ralphanimates from '@/assets/arts/ralphanimates.png';
-import moon from '@/assets/arts/moon.jpg';
-import abdullah from '@/assets/arts/abdullah.png';
-import macch from '@/assets/arts/Animus_Concept.jpg';
-import lazyjackie from '@/assets/arts/lazyjackie.png';
-import yeet_yourself from '@/assets/arts/yeet_yourself.jpg';
-import turboaiger from '@/assets/arts/turboaiger.png';
+import bloop from '@/assets/arts/bloop_smol.jpeg';
+import targetstrike from '@/assets/arts/targetstrike_smol.png';
+import harly from '@/assets/arts/harky_smol.png';
+import ralphanimates from '@/assets/arts/ralphanimates_smol.png';
+import moon from '@/assets/arts/moon_smol.jpg';
+import abdullah from '@/assets/arts/abdullah_smol.png';
+import macch from '@/assets/arts/Animus_Concept_smol.jpg';
+import lazyjackie from '@/assets/arts/lazyjackie_smol.png';
+import yeet_yourself from '@/assets/arts/yeet_yourself_smol.jpg';
+import turboaiger from '@/assets/arts/turboaiger_smol.png';
 
 // import image1 from '@/assets/arts/1.jpg';
 // import image2 from '@/assets/arts/2.jpg';
