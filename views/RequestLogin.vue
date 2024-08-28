@@ -22,7 +22,7 @@ export default {
 	},
 	methods: {
 		logIn() {
-			const redirect = import.meta.env.PROD ? 'https://discord.com/api/oauth2/authorize?client_id=778997567554977842&redirect_uri=https%3A%2F%2Frjaidencontest.infonet.wtf%2Fsubmissions&response_type=code&scope=identify%20guilds.members.read%20guilds' : 'https://discord.com/oauth2/authorize?client_id=778997567554977842&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fsubmissions&scope=identify+guilds+guilds.members.read';
+			const redirect = import.meta.env.PROD ? 'https://discord.com/oauth2/authorize?client_id=778997567554977842&response_type=code&redirect_uri=https%3A%2F%2Frjaidencontest.infonet.wtf%2Fsubmissions&scope=identify+guilds+guilds.members.read' : 'https://discord.com/oauth2/authorize?client_id=778997567554977842&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fsubmissions&scope=identify+guilds+guilds.members.read';
 			window.location = redirect;
 		}
 	}
