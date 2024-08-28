@@ -8,7 +8,7 @@
                             <div class="hero-inner">
                                 <div class="hero-copy">
                                     <h1 class="hero-title mt-0">r/JaidenAnimations art contest</h1>
-                                    <p class="hero-paragraph">View the user's contributions and vote on your favorite one!</p>
+                                    <p class="hero-paragraph">View everyone's contributions and vote on your favorite one!</p>
                                     <div class="hero-cta">
                                         <NuxtLink external="" to="/submissions">
                                             <a class="button button-primary">View submissions</a>
