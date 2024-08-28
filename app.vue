@@ -12,7 +12,7 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'r/JaidenAnimations Art Contest',
-  ogTitle: 'My Amazing Site',
+  ogTitle: 'r/JaidenAnimations Art Contest',
   description: 'Second art contest of the r/JaidenAnimations subreddit',
   ogDescription: 'Second art contest of the r/JaidenAnimations subreddit',
   ogImage: '/preview.png',
