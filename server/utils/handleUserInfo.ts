@@ -1,3 +1,6 @@
+import { serverSupabaseServiceRole } from '#supabase/server';
+import type { H3Event } from 'h3';
+
 interface TokenType {
     access_token: string;
     token_type: string;
@@ -37,11 +40,12 @@ export interface UserInfo {
     };
 }
 
-export const handleUserInfo = (tokens: TokenType): Promise<UserInfo> => {
+export const handleUserInfo = (tokens: TokenType, event: H3Event): Promise<UserInfo> => {
     const config = useRuntimeConfig();
+    const supabase = serverSupabaseServiceRole(event);
 
     return new Promise(async (res, rej) => {
-        console.log(tokens);
+        console.log('handleuserinfo tokens', tokens);
         const userResult = await fetch('https://discord.com/api/users/@me', {
             headers: {
                 authorization: `${tokens.token_type} ${tokens.access_token}`,
@@ -70,6 +74,11 @@ export const handleUserInfo = (tokens: TokenType): Promise<UserInfo> => {
         if (config.newAccountLimitTimestamp && (new Date(config.newAccountLimitTimestamp) <= new Date(oauthUser.joined_at))) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulation', user_data: { member: oauthUser } });
         // TODO: new check for if voted
         // FIXME: for good measure
+
+        const { data, error } = await supabase.from(config.supabaseTable).select('voter_user_id').eq('voter_user_id', oauthUser.id);
+        if (error) return rej({ message: 'Failed to check if you are already in the database', maybe_wrong: false });
+        if (data.length !== 0) return res({ can_vote: false, message: 'You already voted, if you really need to change your vote, contact Grady\'s Physics Homework (aka MaxTechnics)', user_data: { member: oauthUser } })
+
         // if (oauthUserInGuild?.roles?.includes(config.votedRoleId)) return res({ can_vote: false, message: 'You already voted, if you really need to change your vote, contact Grady\'s Physics Homework (aka MaxTechnics)', user_data: { member: oauthUser, guild: oauthUserInGuild } });
         // if (!oauthUserInGuild?.roles?.includes(config.requiredRole)) return res({ can_vote: false, message: 'You need the Crayola role, it unlocks at level 5, go talk in the server a bit and come back later', user_data: { member: oauthUser, guild: oauthUserInGuild } });
 

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
     console.log('Body:', body);
     try {
         const oauth = await handleOauthCall(body.oauthcode);
-        const userInfo = await handleUserInfo((oauth as OauthSuccess).oauthData);
+        const userInfo = await handleUserInfo((oauth as OauthSuccess).oauthData, event);
         await session.update({ tokens: (oauth as OauthSuccess).oauthData });
 
         console.log('DO WE GET HERE?')

@@ -13,17 +13,18 @@ export default defineEventHandler(async (event) => {
         password: config.sessionServerToken
     });
 
-    console.log('confighurayschuion', config)
+    // console.log('confighurayschuion', config)
+    console.log('session', session.data)
     try {
-        const user = await handleUserInfo(session.data.tokens);
+        const user = await handleUserInfo(session.data.tokens, event);
 
-        const { data, error } = await supabase.from(config.supabaseAnalyticsTable).insert({ event_name: 'pre_vote_data_pull', info: result });
+        const { data, error } = await supabase.from(config.supabaseAnalyticsTable).insert({ event_name: 'pre_vote_data_pull', info: user });
         if (error) console.error(error);
-
 
         // handle vote
         try {
             const resp = await handleVote(event, user, body.choice)
+            return resp;
         } catch (error) {
             setResponseStatus(event, 418);
             return error;

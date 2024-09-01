@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-        const userInfo = await handleUserInfo(session.data.tokens);
+        const userInfo = await handleUserInfo(session.data.tokens, event);
         const { data, error } = await supabase.from(config.supabaseAnalyticsTable).insert({ event_name: 'user_pull_session', info: userInfo });
         if (error) console.error(error);
 
