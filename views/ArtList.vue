@@ -256,4 +256,8 @@ onMounted(() => {
 	object-fit: contain;
 	margin-bottom: 20px;
 }
+
+.preview-container {
+    width: 90%; // shitty fix for text overflow on the right
+}
 </style>
