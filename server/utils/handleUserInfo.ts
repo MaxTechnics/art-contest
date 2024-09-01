@@ -63,17 +63,17 @@ export const handleUserInfo = (tokens: TokenType, event: H3Event): Promise<UserI
         // console.log(oauthUser, oauthUserInGuild);
         console.log('oauthuser', oauthUser);
 
+        console.log('config voting', config.votingOpen);
+
         // if (oauthUser.code === 0 || oauthUserInGuild.code === 0) return rej({ message: 'Authenticaton failed, reload to start a new session.' });
         if (oauthUser.code === 0) return rej({ message: 'Authenticaton failed, reload to start a new session.' });
         // if (oauthUser.retry_after || oauthUserInGuild.retry_after) return rej({ message: `Discord is rateliming us, please try again later, about ${Math.ceil(oauthUser.retry_after / 1000 / 60) || Math.ceil(oauthUserInGuild.retry_after / 1000 / 60)} min(s)` });
         if (oauthUser.retry_after) return rej({ message: `Discord is rateliming us, please try again later, about ${Math.ceil(oauthUser.retry_after / 1000 / 60)} min(s)` });
         // if (oauthUserInGuild.code === 10004) return res({ can_vote: false, message: 'You are not in the r/JaidenAnimations server, sorry.', user_data: { member: oauthUser, guild: oauthUserInGuild } });
-        if (!config.votingOpen) return res({ can_vote: false, message: 'Voting has closed, thank you for your participation!', user_data: { member: oauthUser } });
+        if (config.votingOpen !== 'true') return res({ can_vote: false, message: 'Voting has closed, thank you for your participation!', user_data: { member: oauthUser } });
         // if (oauthUserInGuild.code) return res({ can_vote: false, message: oauthUserInGuild.message, user_data: { member: oauthUser, guild: oauthUserInGuild } });
         // if (config.newAccountLimitTimestamp && (new Date(config.newAccountLimitTimestamp) <= new Date(oauthUserInGuild.joined_at))) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulation', user_data: { member: oauthUser, guild: oauthUserInGuild } });
         if (config.newAccountLimitTimestamp && (new Date(config.newAccountLimitTimestamp) <= new Date(oauthUser.joined_at))) return res({ can_vote: false, message: 'You joined the server too late to vote. This is done to avoid vote manipulation', user_data: { member: oauthUser } });
-        // TODO: new check for if voted
-        // FIXME: for good measure
 
         const { data, error } = await supabase.from(config.supabaseTable).select('voter_user_id').eq('voter_user_id', oauthUser.id);
         if (error) return rej({ message: 'Failed to check if you are already in the database', maybe_wrong: false });

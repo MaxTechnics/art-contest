@@ -152,7 +152,6 @@ const post_vote = () => {
             window.initBurst();
         }
 
-        // this.$store.commit('setUserStatus', false); ///nuxt
         mainstore.user_status.can_vote = false;
         voting_finished.value = true;
     }).catch(e => {
