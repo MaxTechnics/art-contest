@@ -38,7 +38,7 @@
                         <div class="cta-inner section-inner">
                             <div class="cta-header text-center">
                                 <h2 class="section-title mt-0">Not part of our community yet?</h2>
-                                <p class="section-paragraph">You won't be able to vote, however feel free to join our server!</p>
+                                <p class="section-paragraph">Consider joining our Discord server!</p>
                                 <div class="cta-cta">
                                     <a class="button button-primary" href="https://discord.gg/98RMyYUyZa">Join server</a>
                                 </div>
