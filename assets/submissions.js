@@ -9,6 +9,13 @@ import lazyjackie from '@/assets/arts/lazyjackie_smol.png';
 import yeet_yourself from '@/assets/arts/yeet_yourself_smol.jpg';
 import turboaiger from '@/assets/arts/turboaiger_smol.png';
 
+import arural_witch from '@/assets/arts/contest2/Arual-Witch-7609.webp';
+import ljhawz_studios from '@/assets/arts/contest2/LJHawzStudios.png';
+import mess_of_a_human from '@/assets/arts/contest2/Mess_ofa_human.webp';
+import errorr_4o4 from '@/assets/arts/contest2/ErR0rR-4O4.jpeg';
+import riccettaforever from '@/assets/arts/contest2/riccettaforever.png';
+import lazyjackie from '@/assets/arts/contest2/LazyJackie.jpeg';
+
 // import image1 from '@/assets/arts/1.jpg';
 // import image2 from '@/assets/arts/2.jpg';
 // import image3 from '@/assets/arts/3.jpg';
@@ -24,76 +31,120 @@ import turboaiger from '@/assets/arts/turboaiger_smol.png';
 
 
 export default [
+    // {
+    //     title: 'Gardevoir',
+    //     description: '',
+    //     author: 'Bloop',
+    //     author_id: '915647175130759230',
+    //     asset: bloop
+    // },
+    // {
+    //     title: 'Lego Dialga',
+    //     description: '',
+    //     author: 'Targetstrike',
+    //     author_id: '594370880956530699',
+    //     asset: targetstrike
+    // },
+    // {
+    //     title: 'i was tired boom bam beep bop blam',
+    //     description: '',
+    //     author: 'harky? 🐀',
+    //     author_id: '640369291220353053',
+    //     asset: harly
+    // },
+    // {
+    //     title: 'Generations United',
+    //     description: '',
+    //     author: 'NotiRaphAnimates',
+    //     author_id: '683450857978593339',
+    //     asset: ralphanimates
+    // },
+    // {
+    //     title: 'Ari',
+    //     description: 'Ari is fierce',
+    //     author: 'Møøn',
+    //     author_id: '992384389839331329',
+    //     asset: moon
+    // },
+    // {
+    //     title: 'Jaidic',
+    //     description: '',
+    //     author: 'Al-Nokhezha Abdullah',
+    //     author_id: '513004975870312467',
+    //     asset: abdullah
+    // },
+    // {
+    //     title: 'Animus Concept',
+    //     description: '',
+    //     author: 'Macch_0',
+    //     author_id: '1010149617071030332',
+    //     asset: macch
+    // },
+    // {
+    //     title: 'Jaiden, the Nuzlocke Destroyer',
+    //     description: '',
+    //     author: 'LazyJackie',
+    //     author_id: '804754691732275230',
+    //     asset: lazyjackie
+    // },
+    // {
+    //     title: 'Jaiden and Jacob after the Elite Four',
+    //     description: '',
+    //     author: 'yeet yourself',
+    //     author_id: '769253933167673344',
+    //     asset: yeet_yourself
+    // },
+    // {
+    //     title: 'Torchic watches sunset',
+    //     description: '',
+    //     author: 'TurboAiger 👑🎗',
+    //     author_id: '892636003892871200',
+    //     asset: turboaiger
+    // },
+
+
     {
-        title: 'Gardevoir',
-        description: '',
-        author: 'Bloop',
-        author_id: '915647175130759230',
-        asset: bloop
+        title: 'My fanart of Jaiden irl for the contest!',
+        description: 'The shirt she\'s wearing doesn\'t actually exist (I made it) and the things in her arm are supposed to be her tattoos.',
+        author: 'u/Arual-Witch-7609',
+        author_id: 'Arual-Witch-7609',
+        asset: arural_witch
     },
     {
-        title: 'Lego Dialga',
+        title: 'Jaiden\'s Angels 😎',
         description: '',
-        author: 'Targetstrike',
-        author_id: '594370880956530699',
-        asset: targetstrike
+        author: 'u/LJHawzStudios',
+        author_id: 'LJHawzStudios',
+        asset: ljhawz_studios
     },
     {
-        title: 'i was tired boom bam beep bop blam',
-        description: '',
-        author: 'harky? 🐀',
-        author_id: '640369291220353053',
-        asset: harly
+        title: '10 Years of Jaiden Animations!',
+        description: 'Finally finished my subission for the 10 year anniversary thing.\nReally like how it came out :)',
+        author: 'u/Mess_ofa_human',
+        author_id: 'Mess_ofa_human',
+        asset: mess_of_a_human
     },
     {
-        title: 'Generations United',
+        title: 'Jaiden with a Hatsune Miku hairstyle',
         description: '',
-        author: 'NotiRaphAnimates',
-        author_id: '683450857978593339',
-        asset: ralphanimates
+        author: 'u/ErR0rR-4O4',
+        author_id: 'ErR0rR-4O4',
+        asset: errorr_4o4
     },
     {
-        title: 'Ari',
-        description: 'Ari is fierce',
-        author: 'Møøn',
-        author_id: '992384389839331329',
-        asset: moon
-    },
-    {
-        title: 'Jaidic',
+        title: 'yippee',
         description: '',
-        author: 'Al-Nokhezha Abdullah',
-        author_id: '513004975870312467',
-        asset: abdullah
-    },
-    {
-        title: 'Animus Concept',
-        description: '',
-        author: 'Macch_0',
-        author_id: '1010149617071030332',
-        asset: macch
-    },
-    {
-        title: 'Jaiden, the Nuzlocke Destroyer',
-        description: '',
-        author: 'LazyJackie',
-        author_id: '804754691732275230',
+        author: 'u/LazyJackie',
+        author_id: 'LazyJackie',
         asset: lazyjackie
     },
     {
-        title: 'Jaiden and Jacob after the Elite Four',
-        description: '',
-        author: 'yeet yourself',
-        author_id: '769253933167673344',
-        asset: yeet_yourself
-    },
-    {
-        title: 'Torchic watches sunset',
-        description: '',
-        author: 'TurboAiger 👑🎗',
-        author_id: '892636003892871200',
-        asset: turboaiger
-    },
+        title: '10 Years of Jaiden Animations!',
+        description: 'It is basically a redraw of a scene but I loved drawing all the Jaidens',
+        author: 'u/riccettaforever',
+        author_id: 'riccettaforever',
+        asset: riccettaforever
+    }
 
 
     // {
