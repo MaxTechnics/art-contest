@@ -1,6 +1,7 @@
 <template>
     <ClientOnly>
-        <div class="component-container is-boxed has-animations lights-off" :class="{ 'is-loaded': loaded }">
+        <WaitView v-if="$config.preVoteOpen !== 'true'" />
+        <div v-else class="component-container is-boxed has-animations lights-off" :class="{ 'is-loaded': loaded }">
             <div class="body-wrap boxed-container" ref="contain">
                 <main>
                     <section class="hero">
@@ -57,6 +58,7 @@
 
 <script setup>
 import submissions from '@/assets/submissions.js';
+import WaitView from '../views/WaitView.vue';
 import '@/assets/styles/Landing/globalbase.scss';
 
 const contain = ref(null);

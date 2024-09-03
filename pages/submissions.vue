@@ -1,8 +1,11 @@
 <template>
-    <Loading v-if="loading" :message="loadingState" />
-    <RequestLogin v-if="requestLogin" />
-    <ErrorView v-if="unsuccessful" :message="errormessage" :problematic="has_error" @button_click="startArt" />
-    <ArtList v-if="!loading && !unsuccessful && !requestLogin" />
+    <WaitView v-if="$config.preVoteOpen !== 'true'" />
+    <div v-else>
+        <Loading v-if="loading" :message="loadingState" />
+        <RequestLogin v-if="requestLogin" />
+        <ErrorView v-if="unsuccessful" :message="errormessage" :problematic="has_error" @button_click="startArt" />
+        <ArtList v-if="!loading && !unsuccessful && !requestLogin" />
+    </div>
 
     <!-- <ArtList /> -->
 </template>
@@ -12,6 +15,7 @@ import ArtList from '@/views/ArtList.vue';
 import ErrorView from '@/views/ErrorView.vue';
 import Loading from '@/views/Loading.vue';
 import RequestLogin from '@/views/RequestLogin.vue';
+import WaitView from '@/views/WaitView.vue';
 import submissions from '@/assets/submissions.js';
 import { onMounted } from 'vue';
 import { useFetch } from 'nuxt/app';

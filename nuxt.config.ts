@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     votedRoleId: process.env.VOTED_ROLE_ID,
     votingOpen: process.env.VOTING_OPEN,
     supabaseTable: process.env.SUPABASE_TABLE,
-    supabaseAnalyticsTable: process.env.SUPABASE_ANALYTICS_TABLE
+    supabaseAnalyticsTable: process.env.SUPABASE_ANALYTICS_TABLE,
+    preVoteOpen: process.env.PRE_VOTING_OPEN
   }
 })
