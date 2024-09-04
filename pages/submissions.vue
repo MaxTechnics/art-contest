@@ -6,8 +6,6 @@
         <ErrorView v-if="unsuccessful" :message="errormessage" :problematic="has_error" @button_click="startArt" />
         <ArtList v-if="!loading && !unsuccessful && !requestLogin" />
     </div>
-
-    <!-- <ArtList /> -->
 </template>
 
 <script setup>
