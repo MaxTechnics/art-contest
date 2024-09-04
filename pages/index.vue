@@ -1,6 +1,5 @@
 <template>
     <ClientOnly>
-        <!-- <WaitView v-if="$config.preVoteOpen !== 'true'" /> -->
         <div class="component-container is-boxed has-animations lights-off" :class="{ 'is-loaded': loaded }">
             <div class="body-wrap boxed-container" ref="contain">
                 <main>

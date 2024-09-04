@@ -1,11 +1,8 @@
 <template>
-    <!-- <WaitView v-if="$config.preVoteOpen !== 'true'" /> -->
-    <!-- <div v-else> -->
     <Loading v-if="loading" :message="loadingState" />
     <RequestLogin v-if="requestLogin" />
     <ErrorView v-if="unsuccessful" :message="errormessage" :problematic="has_error" @button_click="startArt" />
     <ArtList v-if="!loading && !unsuccessful && !requestLogin" />
-    <!-- </div> -->
 </template>
 
 <script setup>
