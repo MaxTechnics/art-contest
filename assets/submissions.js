@@ -14,7 +14,8 @@ import ljhawz_studios from '@/assets/arts/contest2/LJHawzStudios.png';
 import mess_of_a_human from '@/assets/arts/contest2/Mess_ofa_human.webp';
 import errorr_4o4 from '@/assets/arts/contest2/ErR0rR-4O4.jpeg';
 import riccettaforever from '@/assets/arts/contest2/riccettaforever.png';
-import lazyjackie_2 from '@/assets/arts/contest2/LazyJackie.jpeg';
+import lazyjackie_2 from '@/assets/arts/contest2/LazyJackie2.png';
+import eggshark from '@/assets/arts/contest2/egggshark.png';
 
 // import image1 from '@/assets/arts/1.jpg';
 // import image2 from '@/assets/arts/2.jpg';
@@ -144,6 +145,13 @@ export default [
         author: 'u/riccettaforever',
         author_id: 'riccettaforever',
         asset: riccettaforever
+    },
+    {
+        title: 'Jaiden animations 10 years!',
+        description: '',
+        author: 'u/egggshark',
+        author_id: 'egggshark',
+        asset: eggshark
     }
 
 
