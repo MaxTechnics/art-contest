@@ -133,7 +133,7 @@ export default [
         asset: errorr_4o4
     },
     {
-        title: 'yippee',
+        title: 'happy 10 years jaiden',
         description: '',
         author: 'u/LazyJackie',
         author_id: 'LazyJackie',
