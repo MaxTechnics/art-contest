@@ -16,6 +16,8 @@ import errorr_4o4 from '@/assets/arts/contest2/ErR0rR-4O4.jpeg';
 import riccettaforever from '@/assets/arts/contest2/riccettaforever.png';
 import lazyjackie_2 from '@/assets/arts/contest2/LazyJackie2.png';
 import eggshark from '@/assets/arts/contest2/egggshark.png';
+import alternativematch from '@/assets/arts/contest2/Alternative_Match809.png';
+import froogee from '@/assets/arts/contest2/FR00GEE.jpeg';
 
 // import image1 from '@/assets/arts/1.jpg';
 // import image2 from '@/assets/arts/2.jpg';
@@ -152,6 +154,20 @@ export default [
         author: 'u/egggshark',
         author_id: 'egggshark',
         asset: eggshark
+    },
+    {
+        title: 'Jaiden meeting her prototype design',
+        description: '',
+        author: 'u/Alternative_Match809',
+        author_id: 'Alternative_Match809',
+        asset: alternativematch
+    },
+    {
+        title: '10 Years of Jaiden Animations!',
+        description: 'I didn’t really know what I was doing with the whole galaxy background thing, but I think it turned out pretty neat. What do you guys think? (This was made on IbisPaint X)',
+        author: 'u/FR00GEE',
+        author_id: 'FR00GEE',
+        asset: froogee
     }
 
 
